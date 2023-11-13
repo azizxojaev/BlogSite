@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+<title>Admin page</title>
+{% endblock %}
+
+
+{% block content %}
+
+{% if admin %}
+<div class="d-flex">
+    <div class="w-25 bg-light border border-secondary d-flex flex-column p-5 align-items-center gap-2" style="height: 100vh;">
+        <button type="button" onclick="make_active(this, 1)" class="w-75 btn btn-secondary">Article</button>
+        <button type="button" onclick="make_active(this, 2)" class="w-75 btn btn-dark">About</button>
+        <button type="button" onclick="make_active(this, 3)" class="w-75 btn btn-dark">Admin list</button>
+    </div>
+    <div class="w-75 forms" id="form-1">
+        <h3 class="mt-5 text-center">Админ</h3>
+        <form class="w-50 border p-3 m-auto mt-5" action="/admin" method="post" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Title</label>
+                <input type="text" class="form-control" name="title" required>
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Description</label>
+                <textarea name="description" class="form-control" cols="30" rows="10" required></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Image</label>
+                <input type="file" class="form-control" name="img" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+    <div id="form-2" class="forms w-75 d-none">
+        <h3 class="mt-5 text-center">About</h3>
+        <form class="w-50 border p-3 m-auto mt-5" action="/admin" method="post" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">About title</label>
+                <input type="text" class="form-control" name="about-title" required>
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">About description</label>
+                <textarea name="about-description" class="form-control" cols="30" rows="10" required></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">About image</label>
+                <input type="file" class="form-control" name="about-img" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+    <div id="form-3" class="forms w-75 d-none">
+        <h3 class="mt-5 text-center">Admin list</h3>
+        <form class="w-50 border p-3 m-auto mt-5" action="/admin" method="post" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Username</label>
+                <input type="text" class="form-control" name="title" required>
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Status</label>
+                <select class="form-select" aria-label="Default select example">
+                    <option value="admin" selected>Admin</option>
+                    <option value="user">User</option>
+                </select>
+            </div>
+            <div class="mb-3">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</div>
+{% else %}
+<center>
+    <h3 class="mt-5">Вы не админ!</h3>
+</center>
+{% endif %}
+
+{% endblock %}
